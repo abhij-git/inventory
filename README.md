@@ -121,14 +121,17 @@ npm run dev
 ### Backend — Render
 
 1. Push code to GitHub
-2. Create a new **Web Service** on [Render](https://render.com)
-3. Connect your repository and set:
-   - **Root Directory**: `backend`
+2. Create a **PostgreSQL** database on Render (free tier)
+3. Create a new **Web Service** on [Render](https://render.com)
+4. Connect your repository and set:
+   - **Root Directory**: leave empty (uses root `Dockerfile`) **OR** set to `backend`
    - **Environment**: Docker
    - **Environment Variables**:
-     - `DATABASE_URL` — from Render PostgreSQL or external DB
+     - `DATABASE_URL` — paste from your Render PostgreSQL **Internal Database URL**
      - `CORS_ORIGINS` — your frontend URL (e.g. `https://your-app.vercel.app`)
-4. Deploy and note the backend URL
+5. Deploy and verify: `https://your-service.onrender.com/health`
+
+> **Note:** Render sets the `PORT` env variable automatically. The Dockerfile uses `${PORT}` so the app binds to the correct port.
 
 ### Backend — Docker Hub
 
